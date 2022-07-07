@@ -7,16 +7,14 @@ const Shop = () => {
   const [loading, setLoading] = useState(false)
   const [loadedProducts, setLoadedProducts] = useState([])
 
-  const getProducts = async () => {
+ 
+  useEffect(() => {
     setLoading(true)
-    const response = await fetch('https://course-api.com/react-store-products').then(res => res.json())
+    const response =fetch('https://course-api.com/react-store-products').then(res => res.json())
     setProducts(response)
     setLoadedProducts(createPagination(response))
     setLoading(false)
-  }
-
-  useEffect(() => {
-    getProducts()},[]);
+  }, []);
 
   const createPagination = (items, limit = 8, offset = 0) => {
     let arr = []
